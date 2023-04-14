@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.header {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid black;
+
+  .content {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5rem;
+
+    .actions {
+      display: flex;
+      gap: 3rem;
+
+      img {
+        height: 1rem;
+      }
+    }
+  }
+
+  a,
+  button {
+    background-color: transparent;
+    color: $color3;
+    font-weight: 500;
+  }
+}
+
+.active {
+  text-decoration: underline;
+}

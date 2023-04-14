@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.bookmark_filter {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  p {
+    margin: 1rem 0 0.5rem;
+  }
+
+  button {
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    top: 3px;
+
+    svg {
+      position: relative;
+      top: 3px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $color2;
+      border-radius: 50%;
+    }
+  }
+}
