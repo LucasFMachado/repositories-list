@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
-
+First, install all project dependencies:
 ```bash
-npm run dev
+yarn
 # or
-yarn dev
-# or
-pnpm dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, run project:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+# or
+npm run dev
+```
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+Finally, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+PS: the project was hosted at Vercel, and can be accessed at the [this link](https://code-challenge-lucas-machado-git-main-lucasfmachado.vercel.app).
 
-## Learn More
+<hr />
 
-To learn more about Next.js, take a look at the following resources:
+## Technical choices:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Project creation:**
+  
+ This project was built using ReactJS and framework NextJS, version 13 and new features.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### **Architecture**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ The project was divided in a way that it could be easily scalable.
+ Each component or page has a folder with its respective style file.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### **Styles:**
+
+ For project styling, the Sass pre-processor was used.
+ I think Sass is very performant, makes the code more organized and allows cascading styling.
+
+
+### **Code styling:**
+
+  For pattern of project's code, I used eslint and prettier libraries, so that coding rules and patterns could be implemented.
+
+
+### **Main technologies used in the project:**
+
+* [NextJS](https://nextjs.org)
+* [TypesCript](https://www.typescriptlang.org)
+* [Sass](https://sass-lang.com)
