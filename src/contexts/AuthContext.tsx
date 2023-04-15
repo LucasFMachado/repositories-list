@@ -1,22 +1,12 @@
 'use client'
 
+import { IAuthValues, IUserInfo } from '@/types/globalTypes'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
 
 interface IAuthProviderProps {
   children: ReactNode
-}
-
-export interface IAuthValues {
-  login: string
-  password: string
-  email?: string
-}
-
-export interface IUserInfo {
-  login: string
-  email?: string
 }
 
 interface IAuthContext {

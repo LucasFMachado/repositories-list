@@ -1,11 +1,11 @@
 'use client'
 
-import './styles.scss'
-
 import { Menu, MenuButton, MenuItem, MenuList } from '@reach/menu-button'
-import '@reach/menu-button/styles.css'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { SORT_OPTIONS } from './options'
+
+import '@reach/menu-button/styles.css'
+import './styles.scss'
 
 interface IFilterMenuProps {
   title: string

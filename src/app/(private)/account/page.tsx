@@ -4,7 +4,8 @@ import Divider from '@/components/Divider'
 import InputControl from '@/components/InputControl'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { IUserInfo, useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
+import { IUserInfo } from '@/types/globalTypes'
 
 import './styles.scss'
 
@@ -36,8 +37,6 @@ export default function Login() {
       [target.name]: target.value,
     })
   }
-
-  console.log('userasdas: ', userInfo)
 
   return (
     <main className="page_content">

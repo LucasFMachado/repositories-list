@@ -1,10 +1,10 @@
 'use client'
 
 import { useFavorites } from '@/contexts/FavoritesContext'
-import { IRepository } from '../Repos'
-import './styles.scss'
-
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import { IRepository } from '@/types/globalTypes'
+
+import './styles.scss'
 
 interface IRepositoryCardProps {
   repository: IRepository
@@ -15,25 +15,14 @@ export default function RepositoryCard({
   repository,
   favoriteRepo = false,
 }: IRepositoryCardProps) {
-  const { favorites, setFavorites } = useFavorites()
-
-  function handeAddFavorite(repository: IRepository) {
-    if (!favorites.find(i => i.id === repository.id)) {
-      setFavorites(prev => [...prev, repository])
-    }
-  }
-
-  function handleRemoveFavorite(id: number) {
-    const updatedFavorites = favorites.filter(i => i.id !== id)
-    setFavorites(updatedFavorites)
-  }
+  const { addFavorite, removeFavorite } = useFavorites()
 
   return (
     <div className={`repository_card ${favoriteRepo ? 'fill_start' : ''}`}>
       {favoriteRepo ? (
-        <AiFillStar onClick={() => handleRemoveFavorite(repository.id)} />
+        <AiFillStar onClick={() => removeFavorite(repository)} />
       ) : (
-        <AiOutlineStar onClick={() => handeAddFavorite(repository)} />
+        <AiOutlineStar onClick={() => addFavorite(repository)} />
       )}
       <div className="repository_info">
         <p>{repository.name}</p>

@@ -8,30 +8,26 @@ import RepositoryCard from '@/components/RepositoryCard'
 import { TOPICS } from './topics'
 import FilterMenu from '@/components/FilterMenu'
 import Loading from '@/components/Loading'
+import { ISelectedRepository } from '@/types/globalTypes'
 
 import './styles.scss'
 
-export interface IRepository {
-  id: number
-  name: string
-  html_url: string
-  description: string
-}
-
-interface ISelectedRepository {
-  topic: string
-  repositories: IRepository[]
-}
-
 export default function Dashboard() {
   const router = useRouter()
-  const { favorites } = useFavorites()
+  const { favorites, getFavorites } = useFavorites()
   const { isAuth } = useAuth()
+  const [loading, setLoading] = useState(false)
   const [selectedTopics, setSelectedTopics] = useState<ISelectedRepository[]>(
     [],
   )
 
-  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    if (!isAuth()) {
+      router.push('/')
+    } else {
+      getFavorites()
+    }
+  }, [])
 
   async function handleRepos(topic: string) {
     const alreadySelected = selectedTopics.find(i => i.topic === topic)
@@ -50,12 +46,6 @@ export default function Dashboard() {
       setSelectedTopics(updatedTopics)
     }
   }
-
-  useEffect(() => {
-    if (!isAuth()) {
-      router.push('/')
-    }
-  }, [])
 
   return (
     <main className="page_content">
