@@ -35,7 +35,7 @@ export default function Dashboard() {
 
     if (!alreadySelected) {
       setLoading(true)
-      const data = await fetch(`${BASE_URL}?q=language:${topic}&per_page=5`, {
+      const data = await fetch(`${BASE_URL}?q=language:${topic}&per_page=15`, {
         cache: 'no-cache',
       })
       const { items: repositories } = await data.json()
@@ -49,7 +49,7 @@ export default function Dashboard() {
 
   async function sortRepos(topic: string, sort: string) {
     const returnSorted = await fetch(
-      `${BASE_URL}?q=language:${topic}&per_page=5&sort=${sort}`,
+      `${BASE_URL}?q=language:${topic}&per_page=15&sort=${sort}`,
       { cache: 'no-cache' },
     )
     const { items: repos } = await returnSorted.json()
