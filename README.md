@@ -1,6 +1,6 @@
 ## Getting Started
 
-**PS:** the project was hosted at Vercel, and can be accessed at the [this link](https://code-challenge-lucas-machado-git-main-lucasfmachado.vercel.app).
+> **PS:** the project was hosted at Vercel, and can be accessed at the [this link](https://code-challenge-lucas-machado-git-main-lucasfmachado.vercel.app).
 
 First, install all project dependencies:
 ```bash
