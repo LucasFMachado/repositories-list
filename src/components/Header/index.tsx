@@ -1,7 +1,9 @@
 'use client'
 
-import './styles.scss'
 import { useRouter, usePathname } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
+
+import './styles.scss'
 
 interface IHeaderProps {
   authorized?: boolean
@@ -10,6 +12,12 @@ interface IHeaderProps {
 export default function Header({ authorized = false }: IHeaderProps) {
   const router = useRouter()
   const params = usePathname()
+  const { logout } = useAuth()
+
+  function handleLogOut() {
+    logout()
+    router.push('/')
+  }
 
   return (
     <header className="header">
@@ -36,7 +44,7 @@ export default function Header({ authorized = false }: IHeaderProps) {
               >
                 Account
               </a>
-              <button onClick={() => router.push('/')}>Logout</button>
+              <button onClick={handleLogOut}>Logout</button>
             </div>
           </>
         )}

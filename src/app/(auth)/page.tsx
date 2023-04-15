@@ -1,22 +1,31 @@
 'use client'
 
-import './styles.scss'
-
+import Divider from '@/components/Divider'
 import InputControl from '@/components/InputControl'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
+
+import './styles.scss'
 
 export default function Login() {
   const router = useRouter()
-
+  const { isAuth, login } = useAuth()
   const [loginForm, setLoginForm] = useState({
-    user: 'user',
-    pass: 'pass',
+    login: 'username',
+    password: 'pass',
   })
+
+  useEffect(() => {
+    if (isAuth()) {
+      router.push('/dashboard')
+    }
+  }, [])
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(loginForm)
+    console.log('Login values:', loginForm)
+    login(loginForm)
     router.push('/dashboard')
   }
 
@@ -29,30 +38,42 @@ export default function Login() {
 
   return (
     <main className="page_content">
-      <h1 className="title">Sign In</h1>
+      <h1>Sign In</h1>
+      <Divider />
       <form onSubmit={handleSubmit}>
         <InputControl>
-          <label htmlFor="user">Username:</label>
+          <label htmlFor="login">
+            Login: {!loginForm.login && <span>* Required field</span>}
+          </label>
           <input
-            id="user"
-            name="user"
-            value={loginForm.user}
-            placeholder="Type your username"
+            id="login"
+            name="login"
+            required
+            value={loginForm.login}
+            placeholder="Type your login"
             onChange={handleFormChange}
           />
         </InputControl>
         <InputControl>
-          <label htmlFor="pass">Password:</label>
+          <label htmlFor="password">
+            Password: {!loginForm.password && <span>* Required field</span>}
+          </label>
           <input
-            id="pass"
-            name="pass"
+            id="password"
+            name="password"
+            required
             type="password"
-            value={loginForm.pass}
+            value={loginForm.password}
             placeholder="Type your password"
             onChange={handleFormChange}
           />
         </InputControl>
-        <button type="submit">Sign In</button>
+        <button
+          type="submit"
+          disabled={!loginForm.login || !loginForm.password}
+        >
+          Sign In
+        </button>
       </form>
       <span className="register_link">
         Don't have an account? <a href="#">Click here to sign up.</a>

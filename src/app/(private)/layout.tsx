@@ -1,7 +1,7 @@
 import { ContextProvider } from '@/contexts'
-import '../../styles/global.scss'
-
 import Header from '@/components/Header'
+
+import '../../styles/global.scss'
 
 export const metadata = {
   title: 'Dashboard | Code challenge',

@@ -1,22 +1,32 @@
 'use client'
 
-import './styles.scss'
-
+import Divider from '@/components/Divider'
 import InputControl from '@/components/InputControl'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { IUserInfo, useAuth } from '@/contexts/AuthContext'
+
+import './styles.scss'
 
 export default function Login() {
   const router = useRouter()
+  const { isAuth, changeUserInfo } = useAuth()
 
-  const [userInfo, setUserInfo] = useState({
-    user: 'user',
+  const [userInfo, setUserInfo] = useState<IUserInfo>({
+    login: 'user',
     email: 'user@mail.com',
   })
 
+  useEffect(() => {
+    if (!isAuth()) {
+      router.push('/')
+    }
+  }, [])
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(userInfo)
+    console.log('Account values:', userInfo)
+    changeUserInfo(userInfo)
     router.push('/dashboard')
   }
 
@@ -27,17 +37,22 @@ export default function Login() {
     })
   }
 
+  console.log('userasdas: ', userInfo)
+
   return (
     <main className="page_content">
-      <h1 className="title">My Account</h1>
+      <h1>My Account</h1>
+      <Divider />
       <form onSubmit={handleSubmit}>
         <InputControl>
-          <label htmlFor="user">Username:</label>
+          <label htmlFor="login">
+            Username: {!userInfo.login && <span>* Required field</span>}
+          </label>
           <input
-            id="user"
-            name="user"
+            id="login"
+            name="login"
             required
-            value={userInfo.user}
+            value={userInfo.login}
             placeholder="Type your username"
             onChange={handleFormChange}
           />
@@ -53,7 +68,9 @@ export default function Login() {
             onChange={handleFormChange}
           />
         </InputControl>
-        <button type="submit">Save</button>
+        <button type="submit" disabled={!userInfo.login}>
+          Save
+        </button>
       </form>
     </main>
   )

@@ -1,4 +1,6 @@
 import Header from '@/components/Header'
+import { ContextProvider } from '@/contexts'
+
 import '../../styles/global.scss'
 
 export const metadata = {
@@ -13,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <ContextProvider>
+          <Header />
+          {children}
+        </ContextProvider>
       </body>
     </html>
   )
