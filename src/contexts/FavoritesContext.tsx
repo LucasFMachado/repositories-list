@@ -1,6 +1,6 @@
 'use client'
 
-import { IRepository } from '@/types/globalTypes'
+import { IRepository } from '@/utils/globalTypes'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import { createContext, useContext, useState } from 'react'

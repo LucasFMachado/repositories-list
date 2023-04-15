@@ -2,7 +2,7 @@
 
 import { useFavorites } from '@/contexts/FavoritesContext'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
-import { IRepository } from '@/types/globalTypes'
+import { IRepository } from '@/utils/globalTypes'
 
 import './styles.scss'
 

@@ -1,5 +1,14 @@
 @import '../../styles/variables.scss';
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .repository_card {
   background: $color3;
   width: 200px;
@@ -10,6 +19,7 @@
   padding: 0.5rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  animation: fadeIn 0.7s;
 
   .repository_info {
     height: 100%;

@@ -1,11 +1,21 @@
 @import '../../../styles/variables.scss';
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .page_content {
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   margin: auto;
   padding: 0 3rem;
+  align-items: initial;
 
   .title {
     margin-bottom: 1rem;
@@ -16,7 +26,7 @@
 
     .bookmarks {
       display: flex;
-      gap: 0.5rem;
+      gap: 1rem;
       min-height: 150px;
 
       .not_found_message {
@@ -25,6 +35,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        animation: fadeIn 2.5s;
 
         p {
           font-size: 1.5rem;

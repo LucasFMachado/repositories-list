@@ -9,16 +9,18 @@ import './styles.scss'
 
 interface IFilterMenuProps {
   title: string
+  sortRepos: (topic: string, sort: string) => Promise<void>
 }
 
-export default function FilterMenu({ title }: IFilterMenuProps) {
+export default function FilterMenu({ title, sortRepos }: IFilterMenuProps) {
   function handleChangeSort(sortType: string) {
     alert(sortType)
+    sortRepos(title, sortType)
   }
 
   return (
     <div className="bookmark_filter">
-      <p>{title}</p>
+      <p>{`Top ${title}`}</p>
       <Menu>
         <MenuButton>
           <RiArrowDownSLine />
@@ -27,7 +29,7 @@ export default function FilterMenu({ title }: IFilterMenuProps) {
           {SORT_OPTIONS.map(option => (
             <MenuItem
               key={option.value}
-              onSelect={() => handleChangeSort(option.value)}
+              onSelect={() => sortRepos(title, option.value)}
             >
               {option.label}
             </MenuItem>

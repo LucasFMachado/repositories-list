@@ -8,7 +8,8 @@ import RepositoryCard from '@/components/RepositoryCard'
 import { TOPICS } from './topics'
 import FilterMenu from '@/components/FilterMenu'
 import Loading from '@/components/Loading'
-import { ISelectedRepository } from '@/types/globalTypes'
+import { ISelectedRepository } from '@/utils/globalTypes'
+import { BASE_URL } from '@/utils/baseUrl'
 
 import './styles.scss'
 
@@ -29,15 +30,14 @@ export default function Dashboard() {
     }
   }, [])
 
-  async function handleRepos(topic: string) {
+  async function getRepos(topic: string) {
     const alreadySelected = selectedTopics.find(i => i.topic === topic)
 
     if (!alreadySelected) {
       setLoading(true)
-      const data = await fetch(
-        `https://api.github.com/search/repositories?q=language:${topic}&per_page=5`,
-        { cache: 'no-cache' },
-      )
+      const data = await fetch(`${BASE_URL}?q=language:${topic}&per_page=5`, {
+        cache: 'no-cache',
+      })
       const { items: repositories } = await data.json()
       setSelectedTopics(prev => [...prev, { topic, repositories }])
       setLoading(false)
@@ -45,6 +45,19 @@ export default function Dashboard() {
       const updatedTopics = selectedTopics.filter(i => i.topic !== topic)
       setSelectedTopics(updatedTopics)
     }
+  }
+
+  async function sortRepos(topic: string, sort: string) {
+    const returnSorted = await fetch(
+      `${BASE_URL}?q=language:${topic}&per_page=5&sort=${sort}`,
+      { cache: 'no-cache' },
+    )
+    const { items: repos } = await returnSorted.json()
+
+    const sortedTopics: ISelectedRepository[] = selectedTopics.map(item =>
+      item.topic === topic ? { ...item, repositories: repos } : item,
+    )
+    setSelectedTopics(sortedTopics)
   }
 
   return (
@@ -77,7 +90,7 @@ export default function Dashboard() {
               className={
                 selectedTopics.find(i => i.topic === topic) ? 'selected' : ''
               }
-              onClick={() => handleRepos(topic)}
+              onClick={() => getRepos(topic)}
             >
               {topic}
             </button>
@@ -86,7 +99,7 @@ export default function Dashboard() {
 
         {selectedTopics?.map(({ topic, repositories }) => (
           <div key={topic} className="bookmark_topic">
-            <FilterMenu title={`Top ${topic}`} />
+            <FilterMenu title={topic} sortRepos={sortRepos} />
             <div className="bookmarks">
               {repositories?.map(repo => (
                 <RepositoryCard key={repo.id} repository={repo} />

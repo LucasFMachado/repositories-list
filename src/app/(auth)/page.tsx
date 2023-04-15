@@ -5,6 +5,8 @@ import InputControl from '@/components/InputControl'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import './styles.scss'
 
@@ -24,6 +26,20 @@ export default function Login() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    // Mocked validation
+    if (loginForm.login !== 'username' || loginForm.password !== 'pass') {
+      toast.error('Incorrect credentials!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      })
+      return
+    }
     console.log('Login values:', loginForm)
     login(loginForm)
     router.push('/dashboard')
@@ -78,6 +94,7 @@ export default function Login() {
       <span className="register_link">
         Don't have an account? <a href="#">Click here to sign up.</a>
       </span>
+      <ToastContainer />
     </main>
   )
 }

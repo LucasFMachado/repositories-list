@@ -5,7 +5,7 @@ import InputControl from '@/components/InputControl'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import { IUserInfo } from '@/types/globalTypes'
+import { IUserInfo } from '@/utils/globalTypes'
 
 import './styles.scss'
 
@@ -14,7 +14,7 @@ export default function Login() {
   const { isAuth, changeUserInfo } = useAuth()
 
   const [userInfo, setUserInfo] = useState<IUserInfo>({
-    login: 'user',
+    login: 'username',
     email: 'user@mail.com',
   })
 

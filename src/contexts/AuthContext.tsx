@@ -1,6 +1,6 @@
 'use client'
 
-import { IAuthValues, IUserInfo } from '@/types/globalTypes'
+import { IAuthValues, IUserInfo } from '@/utils/globalTypes'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'

@@ -8,7 +8,7 @@ export const SORT_OPTIONS = [
     label: 'Sort by forks',
   },
   {
-    value: 'helps',
+    value: 'help-wanted-issues',
     label: 'Sort by help wanted issues',
   },
   {
