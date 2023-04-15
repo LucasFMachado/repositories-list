@@ -1,3 +1,4 @@
+import { ContextProvider } from '@/contexts'
 import '../../styles/global.scss'
 
 import Header from '@/components/Header'
@@ -14,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header authorized />
-        {children}
+        <ContextProvider>
+          <Header authorized />
+          {children}
+        </ContextProvider>
       </body>
     </html>
   )
