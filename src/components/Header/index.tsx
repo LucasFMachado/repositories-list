@@ -24,12 +24,12 @@ export default function Header({ authorized = false }: IHeaderProps) {
       <div className="content">
         {!authorized ? (
           <div className="actions">
-            <img src="next.svg" alt="Application logo" />
+            <img src="logo.svg" alt="Application logo" />
           </div>
         ) : (
           <>
             <div className="actions">
-              <img src="next.svg" alt="Application logo" />
+              <img src="logo.svg" alt="Application logo" />
               <a
                 href="/dashboard"
                 className={params === '/dashboard' ? 'active' : ''}
