@@ -25,7 +25,7 @@ Finally, open [http://localhost:3000](http://localhost:3000) with your browser t
 
 ### **Project creation:**
   
- This project was built using ReactJS and framework NextJS, version 13 and new features.
+ This project was built using ReactJS and framework NextJS, version 13 and new features. No UI library was used to create the interface.
 
 
 ### **Architecture**
